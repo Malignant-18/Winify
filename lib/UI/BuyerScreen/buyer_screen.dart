@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class BuyerScreen extends StatefulWidget {
-  const BuyerScreen({super.key});
+  final dynamic publicAddress;
+  const BuyerScreen({required this.publicAddress, super.key});
 
   @override
   State<BuyerScreen> createState() => _BuyerScreenState();
@@ -10,6 +11,12 @@ class BuyerScreen extends StatefulWidget {
 class _BuyerScreenState extends State<BuyerScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Placeholder(
+      child: Center(
+        child: Text(
+          widget.publicAddress.toString()
+        ),
+      ),
+    );
   }
 }

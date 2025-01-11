@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import 'package:winify/Constants/constants.dart';
+import 'package:winify/Providers/wallet_provider.dart';
+import 'package:winify/UI/BuyerScreen/buyer_screen.dart';
 
 class BuyerObtainAddressScreen extends StatefulWidget {
   const BuyerObtainAddressScreen({super.key});
@@ -14,6 +17,7 @@ class _BuyerObtainAddressScreenState extends State<BuyerObtainAddressScreen> {
   TextEditingController walletController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final walletProvider = Provider.of<WalletProvider>(context);
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -100,7 +104,39 @@ class _BuyerObtainAddressScreenState extends State<BuyerObtainAddressScreen> {
                         borderRadius: BorderRadius.circular(8)),
                     elevation: 0,
                   ),
-                  onPressed: () {},
+                  onPressed: () async {
+                    try {
+                      dynamic publicAddress;
+
+                      if (walletController.text.isNotEmpty) {
+                        // Use the entered address from the TextField
+                        publicAddress = walletController.text;
+                      } else {
+                        // If the field is empty, generate a new address
+                        final mnemonic = walletProvider.generateMnemonic();
+                        print("Mnemonic: $mnemonic");
+                        final privateKey =
+                            await walletProvider.getPrivateKey(mnemonic);
+                        print("Private Key: $privateKey");
+                        publicAddress =
+                            await walletProvider.getPublicKey(privateKey);
+                        print("Generated Public Address: $publicAddress");
+                      }
+
+                      // Navigate to the Buyer screen and pass the public address
+                      if (mounted) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                BuyerScreen(publicAddress: publicAddress),
+                          ),
+                        );
+                      }
+                    } catch (e) {
+                      print("Error: $e");
+                    }
+                  },
                   child: Ink(
                     decoration: BoxDecoration(
                         gradient: primaryGradient,
@@ -126,7 +162,7 @@ class _BuyerObtainAddressScreenState extends State<BuyerObtainAddressScreen> {
                       ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           )
