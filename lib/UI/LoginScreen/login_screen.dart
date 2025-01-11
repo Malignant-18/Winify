@@ -17,7 +17,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final api = BaseUrl.baseURL;
+  final api = "${BaseUrl.baseURL}/seller/generate-id";
   final usernameTextField = TextEditingController();
   final passwordTextField = TextEditingController();
   String userType = 'Buyer';

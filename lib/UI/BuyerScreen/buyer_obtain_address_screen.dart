@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:winify/Constants/constants.dart';
 import 'package:winify/Providers/wallet_provider.dart';
 import 'package:winify/UI/BuyerScreen/buyer_screen.dart';
@@ -122,10 +123,11 @@ class _BuyerObtainAddressScreenState extends State<BuyerObtainAddressScreen> {
                             await walletProvider.getPublicKey(privateKey);
                         print("Generated Public Address: $publicAddress");
                       }
-
-                      // Navigate to the Buyer screen and pass the public address
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.setString('publicAddress', publicAddress);
+                      await prefs.setBool('shouldRedirectToBuyerObtainAddress', true);
                       if (mounted) {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) =>
