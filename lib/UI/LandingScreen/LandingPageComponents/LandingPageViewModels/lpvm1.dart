@@ -15,7 +15,7 @@ Widget firstPage() {
         child: Text(
           "Welcome to Winify",
           style: GoogleFonts.sarpanch(
-            fontSize: 34,
+            fontSize: 32,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),

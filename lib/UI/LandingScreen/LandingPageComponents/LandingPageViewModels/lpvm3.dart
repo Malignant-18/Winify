@@ -8,15 +8,18 @@ Widget thirdPage(BuildContext context, Function onLandingEnd, {extra = const Cen
 
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
-    spacing: 20,
+    spacing: 10,
     children: [
       Text(
         "Key Features",
         style: GoogleFonts.sarpanch(
           color: primaryWhite,
           fontWeight: FontWeight.bold,
-          fontSize: 24,
+          fontSize: 26,
         ),
+      ),
+      SizedBox(
+        height: 10,
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -48,12 +51,12 @@ Widget thirdPage(BuildContext context, Function onLandingEnd, {extra = const Cen
                           Text(
                             "QR-Based System",
                             style: GoogleFonts.sarpanch(
-                                color: primaryWhite, fontSize: 14),
+                                color: primaryWhite, fontSize: 12),
                           ),
                           Text(
                             "Seamless scanning for\nlottery purchases",
                             style: GoogleFonts.sarpanch(
-                                color: smallTextColor, fontSize: 12),
+                                color: smallTextColor, fontSize: 10),
                           ),
                         ],
                       ),
@@ -64,7 +67,7 @@ Widget thirdPage(BuildContext context, Function onLandingEnd, {extra = const Cen
             ),
           ),
           SizedBox(
-            width: 5,
+            width: 3,
           ),
           SizedBox(
             // height: screenHeight * 0.3,
@@ -90,14 +93,14 @@ Widget thirdPage(BuildContext context, Function onLandingEnd, {extra = const Cen
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "QR-Based System",
+                            "Secure BlockChain",
                             style: GoogleFonts.sarpanch(
-                                color: primaryWhite, fontSize: 14),
+                                color: primaryWhite, fontSize: 12),
                           ),
                           Text(
-                            "Seamless scanning for\nlottery purchases",
+                            "Transparent and tam\nper proof transactions",
                             style: GoogleFonts.sarpanch(
-                                color: smallTextColor, fontSize: 12),
+                                color: smallTextColor, fontSize: 10),
                           ),
                         ],
                       ),
