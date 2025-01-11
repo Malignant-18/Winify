@@ -48,13 +48,13 @@ class _BuyerObtainAddressScreenState extends State<BuyerObtainAddressScreen> {
           ),
           Text(
             "Please enter your wallet address to continue",
-            style: GoogleFonts.sarpanch(color: smallTextColor, fontSize: 16),
+            style: GoogleFonts.sarpanch(color: smallTextColor, fontSize: 14),
           ),
           SizedBox(
             height: 50,
           ),
           Container(
-            height: screenHeight * 0.27,
+            height: screenHeight * 0.3,
             width: screenWidth * 0.95,
             padding: EdgeInsets.all(8.0),
             decoration: BoxDecoration(
