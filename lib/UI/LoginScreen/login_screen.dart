@@ -195,11 +195,13 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response.statusCode == 200) {
         Map<String, dynamic> responseData = jsonDecode(response.body);
         String id = responseData['sellerId'];
+        String name = responseData['name'];
+        String story = responseData['story'];
         if (mounted) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => SellerScreen(sellerID: id)
+              builder: (context) => SellerScreen(sellerID: id, name: name, story: story)
             )
           );
         }

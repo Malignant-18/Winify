@@ -3,10 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:winify/Constants/constants.dart';
 import 'package:winify/UI/LotteryScreen/lottery_screen.dart';
+import 'package:winify/UI/SellerScreen/SellerScreenComponents/seller_story.dart';
 
 class SellerScreen extends StatefulWidget {
   final String sellerID;
-  const SellerScreen({required this.sellerID,super.key});
+  final String name;
+  final String story;
+  const SellerScreen({required this.sellerID,super.key, required this.name, required this.story});
 
   @override
   State<SellerScreen> createState() => _SellerScreenState();
@@ -162,7 +165,12 @@ class _SellerScreenState extends State<SellerScreen> {
                         )
                       )
                     ),
-                    onPressed: (){}, 
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context)=> SellerStory(sellerName: widget.name, sellerStory: widget.story))
+                      );
+                    }, 
                     child: Padding(
                       padding: const EdgeInsets.only(
                         top: 20,
@@ -260,7 +268,7 @@ class _SellerScreenState extends State<SellerScreen> {
                           ),
                         ),
                         Text(
-                          "Ikkachi Main",
+                          widget.name,
                           style: GoogleFonts.sarpanch(
                             color: primaryWhite
                           ),
