@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.winify"
+    namespace = "com.pantheon.winify"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 

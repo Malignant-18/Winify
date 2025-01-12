@@ -109,6 +109,32 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
         .showSnackBar(SnackBar(content: Text("Payment denied for $serial")));
   }
 
+  void _showPaymentProcessedDialog(String serial) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            "Payment Processed",
+            style: GoogleFonts.inika(color: Colors.black),
+          ),
+          content: Text(
+            "Payment has been successfully processed for serial $serial. NFTs can be found in the dashboard!",
+            style: GoogleFonts.inika(color: Colors.black),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text("OK"),
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _processPayment(
     String? sellerId,
     String serial,
@@ -120,8 +146,7 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
 
     final url1 = "${api}buyer/create-lottery-nft";
     String partBeforeHyphen = serial.substring(0, 4); // First 4 characters
-    String partAfterHyphen =
-        serial.substring(4); // Rest of the string after the 4th character
+    String partAfterHyphen = serial.substring(4); // Rest of the string after the 4th character
 
     final Map<String, dynamic> payload1 = {
       'lotteryCode': partBeforeHyphen,
@@ -142,12 +167,8 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
       });
 
       if (response.statusCode == 200) {
-        // print(response.body);
-        // Map<String, dynamic> responseData = jsonDecode(response.body);
-        // String nft = responseData['imageLink'] ?? '';
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Payment processed for serial $serial")),
-        );
+        _showPaymentProcessedDialog(serial); // Show the alert dialog
+
         final url2 = "${api}seller/delete-lottery";
         final Map<String, dynamic> payload2 = {
           'sellerId': sellerId,
