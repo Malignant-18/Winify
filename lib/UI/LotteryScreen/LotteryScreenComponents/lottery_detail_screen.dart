@@ -39,22 +39,18 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
 
   // Fetch serial numbers from the API
   Future<void> _fetchSerialNumbers() async {
-    final lotteryId =
-        widget.lottery.id;
-    final url =
-        "${api}seller/${widget.sellerID}/lotteries/$lotteryId";
+    final lotteryId = widget.lottery.id;
+    final url = "${api}seller/${widget.sellerID}/lotteries/$lotteryId";
 
     try {
       final response = await http.get(Uri.parse(url));
 
       if (response.statusCode == 200) {
         final Map<String, dynamic> data = jsonDecode(response.body);
-        final List<dynamic> serials =
-            data['lotteries'];
+        final List<dynamic> serials = data['lotteries'];
 
         setState(() {
-          _serialNumbers =
-              serials.cast<String>();
+          _serialNumbers = serials.cast<String>();
           _isLoading = false;
         });
       } else {
@@ -70,75 +66,75 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
     }
   }
 
-bool _isLoadingNFT = false;
+  bool _isLoadingNFT = false;
 
-void _openPaymentDialog(String serial) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(
-          "Payment Options",
-          style: GoogleFonts.inika(color: Colors.black),
-        ),
-        content: Text(
-          "Do you want to pay for the serial number $serial?",
-          style: GoogleFonts.inika(color: Colors.black),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: Text("Deny"),
-            onPressed: () {
-              _denyPayment(serial);
-              Navigator.of(context).pop();
-            },
+  void _openPaymentDialog(String serial) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            "Payment Options",
+            style: GoogleFonts.inika(color: Colors.black),
           ),
-          TextButton(
-            child: Text("Pay"),
-            onPressed: () {
-              _processPayment(
-                  widget.sellerID,serial, widget.publicAddress);
-              Navigator.of(context).pop();
-            },
+          content: Text(
+            "Do you want to pay for the serial number $serial?",
+            style: GoogleFonts.inika(color: Colors.black),
           ),
-        ],
-      );
-    },
-  );
-}
+          actions: <Widget>[
+            TextButton(
+              child: Text("Deny"),
+              onPressed: () {
+                _denyPayment(serial);
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text("Pay"),
+              onPressed: () {
+                _processPayment(widget.sellerID, serial, widget.publicAddress);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-void _denyPayment(String serial) {
-  ScaffoldMessenger.of(context)
-      .showSnackBar(SnackBar(content: Text("Payment denied for $serial")));
-}
+  void _denyPayment(String serial) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text("Payment denied for $serial")));
+  }
 
-void _processPayment(
-  String? sellerId,
-  String serial,
-  String publicAddress,
-) {
-  setState(() {
-    _isLoadingNFT = true;
-  });
+  void _processPayment(
+    String? sellerId,
+    String serial,
+    String publicAddress,
+  ) {
+    setState(() {
+      _isLoadingNFT = true;
+    });
 
-  final url1 = "${api}buyer/create-lottery-nft";
-  String partBeforeHyphen = serial.substring(0, 4); // First 4 characters
-  String partAfterHyphen = serial.substring(4); // Rest of the string after the 4th character
+    final url1 = "${api}buyer/create-lottery-nft";
+    String partBeforeHyphen = serial.substring(0, 4); // First 4 characters
+    String partAfterHyphen =
+        serial.substring(4); // Rest of the string after the 4th character
 
-  final Map<String, dynamic> payload1 = {
-    'lotteryCode': partBeforeHyphen,
-    'lotteryId': partAfterHyphen,
-    'buyerAddress': publicAddress,
-  };
+    final Map<String, dynamic> payload1 = {
+      'lotteryCode': partBeforeHyphen,
+      'lotteryId': partAfterHyphen,
+      'buyerAddress': publicAddress,
+    };
 
-  // First POST request
-  http
-    .post(
+    // First POST request
+    http
+        .post(
       Uri.parse(url1),
       headers: {'Content-Type': 'application/json'},
       body: json.encode(payload1),
     )
-    .then((response) {
+        .then((response) {
       setState(() {
         _isLoadingNFT = false;
       });
@@ -168,11 +164,11 @@ void _processPayment(
         );
         throw Exception('Failed to create lottery NFT');
       }
-    })
-    .then((response2) {
+    }).then((response2) {
       if (response2.statusCode == 200) {
         Map<String, dynamic> response2Data = jsonDecode(response2.body);
-        String successMessage = response2Data['message'] ?? 'Lottery deletion failed';
+        String successMessage =
+            response2Data['message'] ?? 'Lottery deletion failed';
 
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(successMessage)),
@@ -182,8 +178,7 @@ void _processPayment(
           SnackBar(content: Text("Failed to delete lottery")),
         );
       }
-    })
-    .catchError((error) {
+    }).catchError((error) {
       setState(() {
         _isLoadingNFT = false;
       });
@@ -192,8 +187,7 @@ void _processPayment(
         SnackBar(content: Text("An error occurred: $error")),
       );
     });
-}
-
+  }
 
   @override
   Widget build(BuildContext context) {
