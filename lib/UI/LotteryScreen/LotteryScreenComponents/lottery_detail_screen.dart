@@ -8,12 +8,14 @@ import 'package:winify/Models/lottery_model.dart';
 import 'package:winify/API/base_url.dart';
 
 class LotteryDetailScreen extends StatefulWidget {
+  final String screenState;
   final Lottery lottery;
   final String? sellerID;
-  final String publicAddress;
+  final String? publicAddress;
 
   const LotteryDetailScreen(
       {super.key,
+      required this.screenState,
       required this.lottery,
       required this.sellerID,
       required this.publicAddress});
@@ -110,7 +112,7 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
   void _processPayment(
     String? sellerId,
     String serial,
-    String publicAddress,
+    String? publicAddress,
   ) {
     setState(() {
       _isLoadingNFT = true;
@@ -217,8 +219,8 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
                   Divider(
                     color: primaryWhite,
                     thickness: 2,
-                    indent: 100,
-                    endIndent: 100,
+                    indent: 120,
+                    endIndent: 120,
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 15),
@@ -258,14 +260,14 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
                                   shape: ContinuousRectangleBorder(
                                       borderRadius: BorderRadius.all(
                                           Radius.circular(12)))),
+                              onPressed: widget.screenState == 'Buyer' ? () {
+                                _openPaymentDialog(serial);
+                              } : (){},
                               child: Text(serial,
                                   style: GoogleFonts.sarpanch(
                                       fontSize: 16,
                                       color: primaryColor,
-                                      fontWeight: FontWeight.bold)),
-                              onPressed: () {
-                                _openPaymentDialog(serial);
-                              },
+                                      fontWeight: FontWeight.bold))
                             ),
                           );
                         }).toList(),

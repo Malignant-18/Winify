@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:winify/Constants/constants.dart';
+import 'package:winify/UI/LotteryScreen/lottery_screen.dart';
 
 class SellerScreen extends StatefulWidget {
   final String sellerID;
@@ -195,7 +196,11 @@ class _SellerScreenState extends State<SellerScreen> {
                         )
                       )
                     ),
-                    onPressed: (){}, 
+                    onPressed: (){
+                      Navigator.push(context,
+                       MaterialPageRoute(builder: (context) => LotteryScreen(screenState: 'Seller' ,sellerID: widget.sellerID))
+                      );
+                    }, 
                     child: Padding(
                       padding: const EdgeInsets.only(
                         top: 20,

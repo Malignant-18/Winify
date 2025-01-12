@@ -213,7 +213,7 @@ class _BuyerScreenState extends State<BuyerScreen> {
         print(responseData); // Print response for debugging
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => LotteryScreen(sellerID: _result, publicAddress: widget.publicAddress)),
+          MaterialPageRoute(builder: (context) => LotteryScreen(screenState: 'Buyer' ,sellerID: _result, publicAddress: widget.publicAddress)),
         );
       } else {
         print('Error: ${response.statusCode}');

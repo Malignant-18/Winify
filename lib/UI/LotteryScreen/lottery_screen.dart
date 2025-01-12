@@ -9,10 +9,11 @@ import 'package:winify/API/base_url.dart';
 import 'package:winify/UI/LotteryScreen/LotteryScreenComponents/lottery_detail_screen.dart';
 
 class LotteryScreen extends StatefulWidget {
+  final String screenState;
   final String? sellerID;
-  final String publicAddress;
+  final String? publicAddress;
   const LotteryScreen(
-      {super.key, required this.sellerID, required this.publicAddress});
+      {super.key, required this.screenState, required this.sellerID, this.publicAddress});
 
   @override
   State<LotteryScreen> createState() => _LotteryScreenState();
@@ -136,12 +137,13 @@ class _LotteryScreenState extends State<LotteryScreen> {
     );
   }
   void _onLotteryTap(
-      BuildContext context, Lottery lottery, String? sellerID, String publicAddress) {
+      BuildContext context, Lottery lottery, String? sellerID, String? publicAddress) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true, // Allow the sheet to expand
       builder: (BuildContext context) {
         return LotteryDetailScreen(
+          screenState: widget.screenState,
           sellerID: sellerID,
           lottery: lottery,
           publicAddress: publicAddress,
