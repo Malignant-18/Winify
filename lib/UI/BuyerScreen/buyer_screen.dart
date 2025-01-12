@@ -5,8 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
 import 'package:winify/Constants/SpinKits/primary_spinkit.dart';
 import 'package:winify/Constants/constants.dart';
-import 'package:winify/Services/API/base_url.dart';
+import 'package:winify/API/base_url.dart';
 import 'package:winify/UI/BuyerScreen/BuyerScreenComponents/q_r_code_scanner.dart';
+import 'package:winify/UI/BuyerScreen/BuyerScreenComponents/nft_history_page.dart';
 import 'package:winify/UI/LotteryScreen/lottery_screen.dart';
 
 class BuyerScreen extends StatefulWidget {
@@ -107,7 +108,11 @@ class _BuyerScreenState extends State<BuyerScreen> {
                           borderRadius: BorderRadius.circular(8)),
                       elevation: 0,
                     ),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.push(context, 
+                        MaterialPageRoute(builder: (context) => NftHistoryPage(publicAddress: widget.publicAddress))  
+                      );
+                    },
                     child: Ink(
                       decoration: BoxDecoration(
                           gradient: primaryGradient,

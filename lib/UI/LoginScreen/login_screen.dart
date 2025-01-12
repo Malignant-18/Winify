@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 import 'package:winify/Constants/constants.dart';
-import 'package:winify/Services/API/base_url.dart';
+import 'package:winify/API/base_url.dart';
 import 'package:winify/UI/BuyerScreen/buyer_obtain_address_screen.dart';
 import 'package:winify/UI/LoginScreen/LoginScreenComponents/input_field.dart';
 import 'package:winify/UI/SellerScreen/seller_screen.dart';

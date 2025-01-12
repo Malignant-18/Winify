@@ -7,6 +7,7 @@ Color primaryWhite = Color(0xFFFFFFFF);
 Color primaryGrey = Color(0xFF1F2937);
 Color hintTextColor = Color(0xFF6B7280);
 Color walletFillColor = Color(0xFF374151);
+Color lotteryMainContainerColor = Color(0xFF374151);
 
 Gradient primaryGradient = LinearGradient(
   colors: [
