@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_fonts/google_fonts.dart';
@@ -209,18 +207,18 @@ class _BuyerScreenState extends State<BuyerScreen> {
     try {
       final response = await http.get(uri);
       if (response.statusCode == 200) {
-        Map<String, dynamic> responseData = jsonDecode(response.body);
-        print(responseData); // Print response for debugging
+        // Map<String, dynamic> responseData = jsonDecode(response.body);
+        // print(responseData); // Print response for debugging
         Navigator.push(
           context,
           MaterialPageRoute(builder: (context) => LotteryScreen(screenState: 'Buyer' ,sellerID: _result, publicAddress: widget.publicAddress)),
         );
       } else {
-        print('Error: ${response.statusCode}');
-        print('Response body: ${response.body}');
+        // print('Error: ${response.statusCode}');
+        // print('Response body: ${response.body}');
       }
     } catch (e) {
-      print('API call failed: $e');
+      // print('API call failed: $e');
     }
   }
 }

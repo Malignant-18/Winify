@@ -26,14 +26,13 @@ Future<List<NftHistory>> fetchNftHistory(String publicAddress) async {
       final historyList = (data['history'] as List)
           .map((nft) => NftHistory.fromJson(nft))
           .toList();
-
-      print(historyList);
+      // print(historyList);
       return historyList;
     } else {
       throw Exception('Failed to load NFT history');
     }
   } catch (e) {
-    print("Error fetching NFT history: $e");
+    // print("Error fetching NFT history: $e");
     return [];
   }
 }

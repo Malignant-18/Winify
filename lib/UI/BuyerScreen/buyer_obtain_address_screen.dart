@@ -115,13 +115,13 @@ class _BuyerObtainAddressScreenState extends State<BuyerObtainAddressScreen> {
                       } else {
                         // If the field is empty, generate a new address
                         final mnemonic = walletProvider.generateMnemonic();
-                        print("Mnemonic: $mnemonic");
+                        // print("Mnemonic: $mnemonic");
                         final privateKey =
                             await walletProvider.getPrivateKey(mnemonic);
-                        print("Private Key: $privateKey");
+                        // print("Private Key: $privateKey");
                         publicAddress =
                             await walletProvider.getPublicKey(privateKey);
-                        print("Generated Public Address: $publicAddress");
+                        // print("Generated Public Address: $publicAddress");
                       }
                       SharedPreferences prefs = await SharedPreferences.getInstance();
                       await prefs.setString('publicAddress', publicAddress);
@@ -136,7 +136,7 @@ class _BuyerObtainAddressScreenState extends State<BuyerObtainAddressScreen> {
                         );
                       }
                     } catch (e) {
-                      print("Error: $e");
+                      // print("Error: $e");
                     }
                   },
                   child: Ink(

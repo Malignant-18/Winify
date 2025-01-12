@@ -204,10 +204,10 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         }
       } else {
-        print("Request failed with Status: ${response.statusCode}");
+        // print("Request failed with Status: ${response.statusCode}");
       }
     } catch (e) {
-      print(e);
+      // print(e);
     }
   }
 }

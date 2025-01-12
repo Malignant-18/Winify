@@ -61,7 +61,7 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
         });
       }
     } catch (e) {
-      print("Error: $e");
+      // print("Error: $e");
       setState(() {
         _isLoading = false;
       });
@@ -142,7 +142,7 @@ class _LotteryDetailScreenState extends State<LotteryDetailScreen> {
       });
 
       if (response.statusCode == 200) {
-        print(response.body);
+        // print(response.body);
         // Map<String, dynamic> responseData = jsonDecode(response.body);
         // String nft = responseData['imageLink'] ?? '';
         ScaffoldMessenger.of(context).showSnackBar(

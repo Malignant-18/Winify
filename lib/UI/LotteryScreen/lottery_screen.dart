@@ -42,14 +42,14 @@ class _LotteryScreenState extends State<LotteryScreen> {
         });
       } else {
         // Handle errors
-        print("Failed to load lotteries: ${response.statusCode}");
+        // print("Failed to load lotteries: ${response.statusCode}");
         setState(() {
           _isLoading = false;
         });
       }
     } catch (e) {
       // Handle any exceptions
-      print("Error fetching lotteries: $e");
+      // print("Error fetching lotteries: $e");
       setState(() {
         _isLoading = false;
       });
