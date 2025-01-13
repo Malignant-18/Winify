@@ -9,7 +9,7 @@ import 'package:winify/UI/BuyerScreen/BuyerScreenComponents/nft_history_page.dar
 import 'package:winify/UI/LotteryScreen/lottery_screen.dart';
 
 class BuyerScreen extends StatefulWidget {
-  final dynamic publicAddress;
+  final String publicAddress;
   const BuyerScreen({required this.publicAddress, super.key});
 
   @override

@@ -107,7 +107,7 @@ class _BuyerObtainAddressScreenState extends State<BuyerObtainAddressScreen> {
                   ),
                   onPressed: () async {
                     try {
-                      dynamic publicAddress;
+                      String publicAddress;
 
                       if (walletController.text.isNotEmpty) {
                         // Use the entered address from the TextField
@@ -119,12 +119,13 @@ class _BuyerObtainAddressScreenState extends State<BuyerObtainAddressScreen> {
                         final privateKey =
                             await walletProvider.getPrivateKey(mnemonic);
                         // print("Private Key: $privateKey");
-                        publicAddress =
+                        final publicAddressMain =
                             await walletProvider.getPublicKey(privateKey);
+                        publicAddress = publicAddressMain.toString();
                         // print("Generated Public Address: $publicAddress");
                       }
                       SharedPreferences prefs = await SharedPreferences.getInstance();
-                      await prefs.setString('publicAddress', publicAddress);
+                      await prefs.setString('publicAddress', publicAddress.toString());
                       await prefs.setBool('shouldRedirectToBuyerObtainAddress', true);
                       if (mounted) {
                         Navigator.pushReplacement(
