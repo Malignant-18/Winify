@@ -15,3 +15,5 @@ Winify is a decentralized application (DApp) designed to revolutionize lottery t
 - Cloud Hostings
 ## Contributing
 Fork and PR, we'll follow up and accept contributions
+## Supporting
+Just starring the repo would be enough! It'd do nothing but motivate!
