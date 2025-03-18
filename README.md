@@ -17,3 +17,10 @@ Winify is a decentralized application (DApp) designed to revolutionize lottery t
 Fork and PR, we'll follow up and accept contributions
 ## Supporting
 Just starring the repo would be enough! It'd do nothing but motivate!
+## Requirements
+Ensure the contract is valid and check deployer account for requisite testnet eth 
+Confirm if pinata uploading into IPFS is stable or not
+## Backend Connection 
+Currently backend is down.
+
+
